@@ -20,15 +20,18 @@ class ListenerUtil {
             registerFirstJoinListener()
         }
         fun registerJoinEventListener() {
-            if(!ConfigUtil.getMainConfig().joinEvent.enabled) HandlerList.unregisterAll(joinEventListener)
-            else TorosamyJoin.plugin.server.pluginManager.registerEvents(joinEventListener,TorosamyJoin.plugin)
+            HandlerList.unregisterAll(joinEventListener)
+            if(!ConfigUtil.getMainConfig().joinEvent.enabled) return
+            TorosamyJoin.plugin.server.pluginManager.registerEvents(joinEventListener,TorosamyJoin.plugin)
         }
         fun registerQuitEventListener() {
-            if(!ConfigUtil.getMainConfig().quitEvent.enabled) HandlerList.unregisterAll(quitEventListener)
+            HandlerList.unregisterAll(quitEventListener)
+            if(!ConfigUtil.getMainConfig().quitEvent.enabled)  return
             else TorosamyJoin.plugin.server.pluginManager.registerEvents(quitEventListener,TorosamyJoin.plugin)
         }
         fun registerFirstJoinListener() {
-            if(!ConfigUtil.getMainConfig().firstJoin.enabled) HandlerList.unregisterAll(firstJoinListener)
+            HandlerList.unregisterAll(firstJoinListener)
+            if(!ConfigUtil.getMainConfig().firstJoin.enabled) return
             else TorosamyJoin.plugin.server.pluginManager.registerEvents(firstJoinListener,TorosamyJoin.plugin)
         }
     }
