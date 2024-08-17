@@ -1,0 +1,7 @@
+name: TorosamyJoin
+version: '1.0-SNAPSHOT'
+main: net.torosamy.torosamyJoin.TorosamyJoin
+api-version: '1.21'
+depend:
+  - TorosamyCore
+  - PlaceholderAPI

@@ -1,0 +1,24 @@
+join-event:
+  enabled: true
+  #[console] [allMessage] [message] [player]
+  actions: []
+
+quit-event:
+  enabled: true
+  #[console] [allMessage] [message]
+  actions: []
+
+
+first-join:
+  enabled: true
+  #[console] [allMessage] [message] [player]
+  actions: []
+  welcome-reward:
+    enabled: true
+    #新玩家进服，其他玩家在多少时间内欢迎才可获得奖励
+    time: 30
+    #[console] [allMessage] [message] [player]
+    actions: []
+    #欢迎关键词，包含这些就可以获得奖励
+    keys:
+      - "欢迎"
