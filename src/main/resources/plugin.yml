@@ -2,6 +2,8 @@ name: TorosamyJoin
 version: '1.0-SNAPSHOT'
 main: net.torosamy.torosamyJoin.TorosamyJoin
 api-version: '1.21'
+authors: [ Torosamy,yweiyang ]
+website: https://www.torosamy.net
 depend:
   - TorosamyCore
   - PlaceholderAPI
