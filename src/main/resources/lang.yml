@@ -1,2 +1,2 @@
-reload-message: "&b[服务器娘]&a插件 &eTorosamyJoin &a重载成功喵~"
-send-successfully: "&b[服务器娘]&a发送成功!"
+reload-message: "&b[服务器娘]&a插件 &eTorosamyScript &a重载成功喵~"
+run-group-success: "&b[服务器娘]&a成功为玩家 &e{player} &a运行了 &e{group} &a指令组"

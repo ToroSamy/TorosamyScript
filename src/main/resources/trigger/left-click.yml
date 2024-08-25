@@ -1,0 +1,8 @@
+customName:
+  world: world
+  x: 10
+  y: 10
+  z: 10
+  actions:
+    - "[console] ts run <script> <player>"
+    - "[op] fly"

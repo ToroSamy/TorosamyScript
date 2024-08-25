@@ -1,9 +1,9 @@
-package net.torosamy.torosamyJoin.utils
+package net.torosamy.torosamyScript.utils
 
-import net.torosamy.torosamyJoin.TorosamyJoin.Companion.plugin
+import net.torosamy.torosamyScript.TorosamyScript.Companion.plugin
 import net.torosamy.torosamyCore.manager.ConfigManager
-import net.torosamy.torosamyJoin.config.LangConfig
-import net.torosamy.torosamyJoin.config.MainConfig
+import net.torosamy.torosamyScript.config.LangConfig
+import net.torosamy.torosamyScript.config.MainConfig
 
 class ConfigUtil {
     companion object {
@@ -11,8 +11,10 @@ class ConfigUtil {
         private var mainConfigManager: ConfigManager = ConfigManager(mainConfig)
         private var langConfig: LangConfig = LangConfig()
         private var langConfigManager: ConfigManager = ConfigManager(langConfig)
-        fun getMainConfig(): MainConfig {return mainConfig}
-        fun getLangConfig(): LangConfig {return langConfig}
+        fun getMainConfig(): MainConfig {return mainConfig
+        }
+        fun getLangConfig(): LangConfig {return langConfig
+        }
 
         fun reloadConfig() {
             mainConfigManager.load(plugin, "config.yml")

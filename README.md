@@ -8,20 +8,20 @@
 ## Permission
 - - **Usage:** /tj reload
   - **Description:** reload this plugin
-  - **Permission:** torosamyjoin.reload
+  - **Permission:** torosamyScript.reload
   <br>
 - - **Usage:** /tj title main-text sub-text
   - **Description:** Send a title info to all players
-  - **Permission:** torosamyjoin.title.all
+  - **Permission:** torosamyScript.title.all
   <br>
 - - **Usage:** /tj title main-text sub-text player-name
   - **Description:** Send a title to a single player
-  - **Permission:** torosamyjoin.title.single
+  - **Permission:** torosamyScript.title.single
 ## Config
 
 ### config.yml
 ```yml
-join-event:
+Script-event:
   enabled: true
   #[console] [allMessage] [message] [player]
   actions: []
@@ -32,7 +32,7 @@ quit-event:
   actions: []
 
 
-first-join:
+first-Script:
   enabled: true
   #[console] [allMessage] [message] [player]
   actions: []
@@ -48,7 +48,7 @@ first-join:
 ```
 ### lang.yml
 ```yml
-reload-message: "&b[服务器娘]&a插件 &eTorosamyJoin &a重载成功喵~"
+reload-message: "&b[服务器娘]&a插件 &eTorosamyScript &a重载成功喵~"
 send-successfully: "&b[服务器娘]&a发送成功!"
 ```
 

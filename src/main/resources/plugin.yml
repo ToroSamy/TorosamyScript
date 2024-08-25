@@ -1,7 +1,7 @@
-name: TorosamyJoin
+name: torosamyScript
 version: '1.0-SNAPSHOT'
-main: net.torosamy.torosamyJoin.TorosamyJoin
-api-version: '1.21'
+main: net.torosamy.torosamyScript.TorosamyScript
+api-version: '1.13'
 authors: [ Torosamy,yweiyang ]
 website: https://www.torosamy.net
 depend:
