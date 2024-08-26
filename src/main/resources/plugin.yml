@@ -1,4 +1,4 @@
-name: torosamyScript
+name: TorosamyScript
 version: '1.0-SNAPSHOT'
 main: net.torosamy.torosamyScript.TorosamyScript
 api-version: '1.13'
