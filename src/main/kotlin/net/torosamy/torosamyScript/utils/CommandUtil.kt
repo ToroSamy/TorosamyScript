@@ -5,16 +5,14 @@ import me.clip.placeholderapi.PlaceholderAPI
 
 import net.torosamy.torosamyCore.TorosamyCore
 import net.torosamy.torosamyCore.utils.MessageUtil
-import net.torosamy.torosamyScript.TorosamyScript
 import net.torosamy.torosamyScript.commands.Commands
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 class CommandUtil {
     companion object {
-        private var torosamyCorePlugin: TorosamyCore = TorosamyScript.plugin.server.pluginManager.getPlugin("TorosamyCore") as TorosamyCore
         fun registerCommand() {
-            torosamyCorePlugin.getCommandManager().annotationParser.parse(Commands())
+            TorosamyCore.commanderManager.annotationParser.parse(Commands())
         }
 
         fun getCommand(player: Player, command: String) :Boolean{

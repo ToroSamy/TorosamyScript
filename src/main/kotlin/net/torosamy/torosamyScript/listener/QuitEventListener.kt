@@ -10,9 +10,9 @@ import org.bukkit.event.player.PlayerQuitEvent
 class QuitEventListener : Listener {
     @EventHandler
     fun playerOnQuit(event: PlayerQuitEvent) {
-        if (!ConfigUtil.getMainConfig().quitEvent.enabled) return
+        if (!ConfigUtil.mainConfig.quitEvent.enabled) return
 
-        for (action in ConfigUtil.getMainConfig().quitEvent.actions) {
+        for (action in ConfigUtil.mainConfig.quitEvent.actions) {
             if (!CommandUtil.getCommand(event.player, action)) return
         }
     }

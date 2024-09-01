@@ -25,7 +25,7 @@ class Commands {
         CommandGroupManager.loadCommandGroups()
         BlockScriptManager.loadBlockScript()
 
-        sender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().reloadMessage))
+        sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.reloadMessage))
     }
 
     @Command(value = "ts run <group> <player>")
@@ -45,7 +45,7 @@ class Commands {
             for(command in commandGroup) {
                 if(!CommandUtil.getCommand(onlinePlayer, command)) return
             }
-            TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text(ConfigUtil.getLangConfig().runGroupSuccess).replace("{player}", player.name).replace("{group}", commandGroupStr))
+            TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.runGroupSuccess).replace("{player}", player.name).replace("{group}", commandGroupStr))
             break
         }
     }

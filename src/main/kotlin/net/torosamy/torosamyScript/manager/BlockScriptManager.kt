@@ -12,28 +12,23 @@ import org.bukkit.configuration.file.YamlConfiguration
 class BlockScriptManager {
     companion object {
         val blockScripts = HashMap<String, BlockScript>()
-        val leftClickYmlConfigManager = ConfigManager()
-        val rightClickYmlConfigManager = ConfigManager()
-        val walkYmlConfigManager = ConfigManager()
 
 
         fun loadBlockScript() {
             blockScripts.clear()
-            leftClickYmlConfigManager.loadFile(TorosamyScript.plugin, "trigger", "left-click.yml")
-            loadBlockScriptData(leftClickYmlConfigManager.yamlConfiguration, TriggerType.LEFT_CLICK)
+            loadBlockScriptData(ConfigManager.loadYaml(TorosamyScript.plugin, "trigger", "left-click.yml"), TriggerType.LEFT_CLICK)
 
             TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text("&a[服务器娘]&a插件 &eTorosamyScript &a成功加载 &e${blockScripts.size} &a个左键类型脚本方块喵~"))
             var temp = blockScripts.size
 
-            rightClickYmlConfigManager.loadFile(TorosamyScript.plugin, "trigger", "right-click.yml")
-            loadBlockScriptData(rightClickYmlConfigManager.yamlConfiguration, TriggerType.RIGHT_CLICK)
+
+            loadBlockScriptData(ConfigManager.loadYaml(TorosamyScript.plugin, "trigger", "right-click.yml"), TriggerType.RIGHT_CLICK)
 
             TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text("&a[服务器娘]&a插件 &eTorosamyScript &a成功加载 &e${blockScripts.size - temp} &a个右键类型脚本方块喵~"))
             temp = blockScripts.size
 
 
-            walkYmlConfigManager.loadFile(TorosamyScript.plugin, "trigger", "walk.yml")
-            loadBlockScriptData(walkYmlConfigManager.yamlConfiguration, TriggerType.WALK)
+            loadBlockScriptData(ConfigManager.loadYaml(TorosamyScript.plugin, "trigger", "walk.yml"), TriggerType.WALK)
             TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text("&a[服务器娘]&a插件 &eTorosamyScript &a成功加载 &e${blockScripts.size - temp} &a个脚踩类型脚本方块喵~"))
         }
 

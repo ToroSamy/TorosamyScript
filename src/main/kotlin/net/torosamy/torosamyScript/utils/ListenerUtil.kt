@@ -21,12 +21,12 @@ class ListenerUtil {
         }
         fun registerJoinEventListener() {
             HandlerList.unregisterAll(joinEventListener)
-            if(!ConfigUtil.getMainConfig().joinEvent.enabled) return
+            if(!ConfigUtil.mainConfig.joinEvent.enabled) return
             TorosamyScript.plugin.server.pluginManager.registerEvents(joinEventListener, TorosamyScript.plugin)
         }
         fun registerQuitEventListener() {
             HandlerList.unregisterAll(quitEventListener)
-            if(!ConfigUtil.getMainConfig().quitEvent.enabled)  return
+            if(!ConfigUtil.mainConfig.quitEvent.enabled)  return
             else TorosamyScript.plugin.server.pluginManager.registerEvents(quitEventListener, TorosamyScript.plugin)
         }
 
