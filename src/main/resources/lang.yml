@@ -1,2 +1,7 @@
 reload-message: "&b[服务器娘]&a插件 &eTorosamyScript &a重载成功喵~"
 run-group-success: "&b[服务器娘]&a成功为玩家 &e{player} &a运行了 &e{group} &a指令组"
+
+load-command-group-message: "&b[服务器娘]&a成功加载 &e%amount%&a 个脚本"
+load-left-message: "&b[服务器娘]&a成功加载 &e%amount%&a 个左键脚本方块"
+load-right-message: "&b[服务器娘]&a成功加载 &e%amount%&a 个右键脚本方块"
+load-walk-message: "&b[服务器娘]&a成功加载 &e%amount%&a 个脚踩脚本方块"

@@ -1,6 +1,7 @@
 package net.torosamy.torosamyScript.listener
 
 
+import net.torosamy.torosamyCore.api.TorosamyCoreAPI
 import net.torosamy.torosamyScript.utils.CommandUtil
 import net.torosamy.torosamyScript.utils.ConfigUtil
 import org.bukkit.event.EventHandler
@@ -12,8 +13,6 @@ class QuitEventListener : Listener {
     fun playerOnQuit(event: PlayerQuitEvent) {
         if (!ConfigUtil.mainConfig.quitEvent.enabled) return
 
-        for (action in ConfigUtil.mainConfig.quitEvent.actions) {
-            if (!CommandUtil.getCommand(event.player, action)) return
-        }
+        TorosamyCoreAPI.runCommands(event.player, ConfigUtil.mainConfig.quitEvent.actions)
     }
 }

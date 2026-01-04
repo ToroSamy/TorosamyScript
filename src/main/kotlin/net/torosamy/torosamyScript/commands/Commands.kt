@@ -1,19 +1,17 @@
 package net.torosamy.torosamyScript.commands
 
 
-import net.torosamy.torosamyScript.utils.ListenerUtil
 import net.torosamy.torosamyCore.utils.MessageUtil
 import net.torosamy.torosamyScript.TorosamyScript
-import net.torosamy.torosamyScript.manager.BlockScriptManager
-import net.torosamy.torosamyScript.manager.CommandGroupManager
-import net.torosamy.torosamyScript.utils.CommandUtil
+import net.torosamy.torosamyScript.api.TorosamyScriptAPI
+import net.torosamy.torosamyScript.scheduler.TimerTask
 import net.torosamy.torosamyScript.utils.ConfigUtil
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
-import org.incendo.cloud.annotations.Argument
-import org.incendo.cloud.annotations.Command
-import org.incendo.cloud.annotations.CommandDescription
-import org.incendo.cloud.annotations.Permission
+import org.incendo.cloud.annotations.*
+import org.incendo.cloud.annotations.suggestion.Suggestions
+import org.incendo.cloud.context.CommandContext
+import org.incendo.cloud.context.CommandInput
 
 class Commands {
     @Command(value = "ts reload")
@@ -21,32 +19,49 @@ class Commands {
     @CommandDescription("重载TorosamyScript配置文件")
     fun reloadConfig(sender: CommandSender) {
         ConfigUtil.reloadConfig()
-        ListenerUtil.registerListener()
-        CommandGroupManager.loadCommandGroups()
-        BlockScriptManager.loadBlockScript()
+        TorosamyScriptAPI.loadBlockScripts()
+        TorosamyScriptAPI.loadCommandGroup()
 
-        sender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.reloadMessage))
+        sender.sendMessage(MessageUtil.format(ConfigUtil.langConfig.reloadMessage))
     }
 
-    @Command(value = "ts run <group> <player>")
+    @Command(value = "ts show-click")
+    @Permission("torosamyScript.show-click")
+    @CommandDescription("是否显示点击方块的位置")
+    fun updateShowClick(sender: CommandSender) {
+        TorosamyScriptAPI.showClickLocation = !TorosamyScriptAPI.showClickLocation
+        
+        sender.sendMessage(TorosamyScriptAPI.showClickLocation.toString())
+    }
+
+
+    @Command(value = "ts run <group> <player> [messaged] [tick] [seconds]")
     @Permission("torosamyScript.run")
     @CommandDescription("为在线玩家运行一个指令组")
-    fun runGroup(
-        sender: CommandSender,
-        @Argument("player") player: Player,
-        @Argument("group") commandGroupStr: String
-    ) {
+    fun runGroup(sender: CommandSender, @Argument("player") player: Player, @Argument(value = "group", suggestions = "group") groupName: String, @Argument("tick") @Default("-1") tick: Int, @Argument("seconds") @Default("-1") seconds: Int, @Argument("messaged") @Default("true") messaged: Boolean) {
+        val commandGroup = TorosamyScriptAPI.getCommandGroup(groupName) ?: return
 
-
-        val commandGroup: List<String> = CommandGroupManager.commandGroups[commandGroupStr] ?: return
-
-        for (onlinePlayer in TorosamyScript.plugin.server.onlinePlayers) {
-            if (onlinePlayer.name != player.name) continue
-            for(command in commandGroup) {
-                if(!CommandUtil.getCommand(onlinePlayer, command)) return
-            }
-            TorosamyScript.plugin.server.consoleSender.sendMessage(MessageUtil.text(ConfigUtil.langConfig.runGroupSuccess).replace("{player}", player.name).replace("{group}", commandGroupStr))
-            break
+        if (tick != -1 && seconds != -1) {
+            TimerTask(player, commandGroup, seconds).runTaskTimer(TorosamyScript.plugin, 0L, 1L)
+        }else {
+            commandGroup.runCommands(player)
         }
+        
+        if (!messaged) {
+            return
+        }
+        
+        sender.sendMessage(
+            MessageUtil.format(ConfigUtil.langConfig.runGroupSuccess)
+                .replace("{player}", player.name)
+                .replace("{group}", groupName)
+        )
+    }
+
+
+    @Suggestions("group")
+    fun groups(context: CommandContext<CommandSender>, input: CommandInput?): List<String> {
+
+        return TorosamyScriptAPI.getCommandGroupNames();
     }
 }
